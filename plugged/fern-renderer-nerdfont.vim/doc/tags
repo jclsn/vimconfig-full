@@ -1,0 +1,14 @@
+fern-renderer-nerdfont-colors	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont-colors*
+fern-renderer-nerdfont-contents	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont-contents*
+fern-renderer-nerdfont-interface	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont-interface*
+fern-renderer-nerdfont-introduction	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont-introduction*
+fern-renderer-nerdfont-usage	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont-usage*
+fern-renderer-nerdfont-variable	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont-variable*
+fern-renderer-nerdfont.txt	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont.txt*
+fern-renderer-nerdfont.vim	fern-renderer-nerdfont.txt	/*fern-renderer-nerdfont.vim*
+g:fern#renderer#nerdfont#indent_markers	fern-renderer-nerdfont.txt	/*g:fern#renderer#nerdfont#indent_markers*
+g:fern#renderer#nerdfont#leading	fern-renderer-nerdfont.txt	/*g:fern#renderer#nerdfont#leading*
+g:fern#renderer#nerdfont#padding	fern-renderer-nerdfont.txt	/*g:fern#renderer#nerdfont#padding*
+g:fern#renderer#nerdfont#root_leading	fern-renderer-nerdfont.txt	/*g:fern#renderer#nerdfont#root_leading*
+g:fern#renderer#nerdfont#root_symbol	fern-renderer-nerdfont.txt	/*g:fern#renderer#nerdfont#root_symbol*
+number	fern-renderer-nerdfont.txt	/*number*

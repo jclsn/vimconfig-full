@@ -1,0 +1,135 @@
+# ==============================================================================
+# Functions with parameters.
+# ==============================================================================
+Given rust (impl methods with parameters):
+  struct Person {
+      name: String,
+  }
+  
+  impl Person {
+      fn new(name: &str) -> Person {
+          Person {
+              name: name.to_string(),
+          }
+      }
+  
+      pub fn hello(&self) -> u8 {
+          return 0;
+      }
+  }
+
+Do (trigger doge):
+  :6\<CR>
+  \<C-d>
+  :23\<CR>
+  \<C-d>
+
+Expect rust (generated comments with Arguments and Examples sections):
+  struct Person {
+      name: String,
+  }
+  
+  impl Person {
+      /// [TODO:description]
+      ///
+      /// # Arguments
+      ///
+      /// * `name` - [TODO:description]
+      ///
+      /// # Examples
+      ///
+      /// ```
+      /// [TODO:write some example code]
+      /// ```
+      fn new(name: &str) -> Person {
+          Person {
+              name: name.to_string(),
+          }
+      }
+  
+      /// [TODO:description]
+      ///
+      /// # Examples
+      ///
+      /// ```
+      /// [TODO:write some example code]
+      /// ```
+      pub fn hello(&self) -> u8 {
+          return 0;
+      }
+  }
+
+# ==============================================================================
+# Functions parameter destruction
+# ==============================================================================
+Given rust (function with destructured params):
+  pub fn do_thing((i, j): (u8, u8)) -> u8 {
+    i * j
+  }
+
+Do (trigger doge):
+  \<C-d>
+
+Expect rust (generated comments):
+  /// [TODO:description]
+  ///
+  /// # Examples
+  ///
+  /// ```
+  /// [TODO:write some example code]
+  /// ```
+  pub fn do_thing((i, j): (u8, u8)) -> u8 {
+    i * j
+  }
+
+# ==============================================================================
+# Functions with errors and safety section
+# ==============================================================================
+Given rust (impl methods with Errors and Safety section):
+  #[debug]
+  #[foo(
+    bar=1,
+    baz=2
+  )]
+  pub unsafe fn foo(foo: usize) -> Result<(), FooError> {
+      fs::read_to_string("file.txt")
+          .unwrap_or_else(|err| panic!("Failed to read filepath: {:?}", err));
+  }
+
+Do (trigger doge):
+  :6\<CR>
+  \<C-d>
+
+Expect rust (generated comments with Arguments, Safety, Errors and Examples sections):
+  /// [TODO:description]
+  ///
+  /// # Arguments
+  ///
+  /// * `foo` - [TODO:description]
+  ///
+  /// # Panics
+  ///
+  /// [TODO:describe scenarios in which the function could panic]
+  ///
+  /// # Errors
+  ///
+  /// [TODO:describe error types and what triggers them]
+  ///
+  /// # Safety
+  ///
+  /// [TODO:explain why the function is unsafe]
+  ///
+  /// # Examples
+  ///
+  /// ```
+  /// [TODO:write some example code]
+  /// ```
+  #[debug]
+  #[foo(
+    bar=1,
+    baz=2
+  )]
+  pub unsafe fn foo(foo: usize) -> Result<(), FooError> {
+      fs::read_to_string("file.txt")
+          .unwrap_or_else(|err| panic!("Failed to read filepath: {:?}", err));
+  }

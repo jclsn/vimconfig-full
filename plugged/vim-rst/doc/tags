@@ -1,0 +1,11 @@
+b:rst2html_opts	rst.txt	/*b:rst2html_opts*
+g:rst2html_opts	rst.txt	/*g:rst2html_opts*
+g:rst2html_prg	rst.txt	/*g:rst2html_prg*
+g:rst_mappings	rst.txt	/*g:rst_mappings*
+g:rst_minlines	rst.txt	/*g:rst_minlines*
+g:rst_syntax_code_list	rst.txt	/*g:rst_syntax_code_list*
+rst-settings	rst.txt	/*rst-settings*
+rst.txt	rst.txt	/*rst.txt*
+rst_gx	rst.txt	/*rst_gx*
+rst_text_objects	rst.txt	/*rst_text_objects*
+vim-rst	rst.txt	/*vim-rst*

@@ -1,0 +1,71 @@
+# ==============================================================================
+# Class method __init__().
+# ==============================================================================
+Given python (class method __init__() with parameters):
+  class MyClass(object):
+
+    def __init__(self: MyClass):
+      pass
+
+Do (trigger doge):
+  :3\<CR>
+  \<C-d>
+
+Expect python (generated comment with no :param tags):
+  class MyClass(object):
+
+    def __init__(self: MyClass):
+      """
+      [TODO:description]
+      """
+      pass
+# ==============================================================================
+# Class method with advanced type hints.
+# ==============================================================================
+Given python (class method with advanced type hints):
+  class MyClass(object):
+
+    def myMethod(self: MyClass, p1: Sequence[T]) -> Generator[int, float, str]:
+      pass
+
+Do (trigger doge):
+  :3\<CR>
+  \<C-d>
+
+Expect python (generated comment with :param tags):
+  class MyClass(object):
+
+    def myMethod(self: MyClass, p1: Sequence[T]) -> Generator[int, float, str]:
+      """
+      [TODO:description]
+
+      :param p1: [TODO:description]
+      :return: [TODO:description]
+      """
+      pass
+
+# ==============================================================================
+# Class method parameters with *args and **kwargs.
+# ==============================================================================
+Given python (class method parameters with *args and **kwargs):
+  class MyClass(object):
+
+    def call(cls, foo: str, **kwargs: dict[str, str]) -> str:
+      pass
+
+Do (trigger doge):
+  :3\<CR>
+  \<C-d>
+
+Expect python (generated comment with :param tags):
+  class MyClass(object):
+
+    def call(cls, foo: str, **kwargs: dict[str, str]) -> str:
+      """
+      [TODO:description]
+
+      :param foo: [TODO:description]
+      :param kwargs: [TODO:description]
+      :return: [TODO:description]
+      """
+      pass

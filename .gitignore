@@ -9,6 +9,8 @@
 !templates
 !vimrc
 
+!autoload/
+!plugged/**
 !ftplugin/
 !lsp/
 

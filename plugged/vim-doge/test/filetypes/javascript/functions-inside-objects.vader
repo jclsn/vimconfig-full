@@ -1,0 +1,87 @@
+# ==============================================================================
+# Anonymous functions inside objects without parameters.
+# ==============================================================================
+Given javascript (anonymous function inside object without parameters):
+  var myObj = {
+    myFunc: function(/* inline comment */) {
+      //
+    },
+    myArrowFunc: (/* inline comment */) => {
+      return 1;
+    },
+  };
+
+Do (trigger doge):
+  :2\<CR>
+  \<C-d>
+  :9\<CR>
+  \<C-d>
+
+Expect javascript (generated comment with @returns tags):
+  var myObj = {
+    /**
+     * [TODO:description]
+     *
+     */
+    myFunc: function(/* inline comment */) {
+      //
+    },
+    /**
+     * [TODO:description]
+     *
+     * @returns {[TODO:type]} [TODO:description]
+     */
+    myArrowFunc: (/* inline comment */) => {
+      return 1;
+    },
+  };
+
+
+# ==============================================================================
+# Async named functions with parameters with/without type hints.
+# ==============================================================================
+Given javascript (functions with punctation with parameters with/without type hints):
+  var myObj = {
+    'my-func': async function test($p1: string = 'value', p2: array = [], p3, p4 /* inline comment */) {
+      return $p1;
+    },
+    'my-arrow-func': async ($p1: string = 'value', p2: array = [], p3, p4 /* inline comment */): ( 1 | 2 | 3 ) => {
+      return 1;
+    },
+  };
+
+Do (trigger doge):
+  :2\<CR>
+  \<C-d>
+  :15\<CR>
+  \<C-d>
+
+Expect javascript (generated comment with @async, @param and @returns tags):
+  var myObj = {
+    /**
+     * [TODO:description]
+     *
+     * @async
+     * @param {string} [$p1] - [TODO:description]
+     * @param {array} [p2] - [TODO:description]
+     * @param {[TODO:type]} p3 - [TODO:description]
+     * @param {[TODO:type]} p4 - [TODO:description]
+     * @returns {Promise<[TODO:type]>} [TODO:description]
+     */
+    'my-func': async function test($p1: string = 'value', p2: array = [], p3, p4 /* inline comment */) {
+      return $p1;
+    },
+    /**
+     * [TODO:description]
+     *
+     * @async
+     * @param {string} [$p1] - [TODO:description]
+     * @param {array} [p2] - [TODO:description]
+     * @param {[TODO:type]} p3 - [TODO:description]
+     * @param {[TODO:type]} p4 - [TODO:description]
+     * @returns {Promise<1 | 2 | 3>} [TODO:description]
+     */
+    'my-arrow-func': async ($p1: string = 'value', p2: array = [], p3, p4 /* inline comment */): ( 1 | 2 | 3 ) => {
+      return 1;
+    },
+  };

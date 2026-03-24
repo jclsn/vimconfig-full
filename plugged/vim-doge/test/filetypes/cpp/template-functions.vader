@@ -1,0 +1,146 @@
+# ==============================================================================
+# Template functions with parameters with return type.
+# ==============================================================================
+Given cpp (template function with parameters with return type):
+  template <typename HandshakeHandler>
+  void myFunc(handshake_type type, HandshakeHandler handler) {}
+
+  template <typename HandshakeHandler>
+  void myFunc(handshake_type type, HandshakeHandler handler) {}
+
+Do (trigger doge):
+  \<C-d>
+" trigger at line 12 rather than 11 to check whether the comment is inserted at
+" the starting position of the function, which is line 11.
+  :12\<CR>
+  \<C-d>
+
+Expect cpp (generated comment with @brief, @tparam, and @param tags):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @tparam HandshakeHandler [TODO:description]
+   * @param[[TODO:direction]] type [TODO:description]
+   * @param[[TODO:direction]] handler [TODO:description]
+   */
+  template <typename HandshakeHandler>
+  void myFunc(handshake_type type, HandshakeHandler handler) {}
+
+  /**
+   * @brief [TODO:summary]
+   *
+   * @tparam HandshakeHandler [TODO:description]
+   * @param[[TODO:direction]] type [TODO:description]
+   * @param[[TODO:direction]] handler [TODO:description]
+   */
+  template <typename HandshakeHandler>
+  void myFunc(handshake_type type, HandshakeHandler handler) {}
+
+# ==============================================================================
+# Template functions without template parameters with return type.
+# ==============================================================================
+Given cpp (template function without template parameters with return type):
+  template <>
+  void myFunc(handshake_type type, HandshakeHandler handler) {}
+
+Do (trigger doge):
+  \<C-d>
+
+Expect cpp (generated comment with @brief, and @param tags):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @param[[TODO:direction]] type [TODO:description]
+   * @param[[TODO:direction]] handler [TODO:description]
+   */
+  template <>
+  void myFunc(handshake_type type, HandshakeHandler handler) {}
+
+# ==============================================================================
+# Template functions with parameters with return types with default # values.
+# ==============================================================================
+Given cpp (template function with parameters with return types with default values):
+  template<class...T> void h(int i = 0, T... args) {}
+
+Do (trigger doge):
+  \<C-d>
+
+Expect cpp (generated comment with @tparam and @param tags):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @tparam T [TODO:description]
+   * @param[[TODO:direction]] i [TODO:description]
+   * @param[[TODO:direction]] args [TODO:description]
+   */
+  template<class...T> void h(int i = 0, T... args) {}
+
+# ==============================================================================
+# Template classes
+# ==============================================================================
+Given cpp (class template):
+  template<typename Test>
+  class test {};
+
+  template<typename Test>
+  class test2 {};
+
+Do (trigger doge):
+  \<C-d>
+" trigger at line 10 rather than 9 to check whether the comment is inserted at
+" the starting position of the function, which is line 9.
+  :10\<CR>
+  \<C-d>
+
+Expect cpp (generated comment with @brief, @tparam tags):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @tparam Test [TODO:description]
+   */
+  template<typename Test>
+  class test {};
+
+  /**
+   * @brief [TODO:summary]
+   *
+   * @tparam Test [TODO:description]
+   */
+  template<typename Test>
+  class test2 {};
+
+# ==============================================================================
+# Template structs
+# ==============================================================================
+Given cpp (class struct):
+  template <typename Test1, typename Test2>
+  struct test {};
+
+  template <typename Test1, typename Test2>
+  struct test2 {};
+
+Do (trigger doge):
+  \<C-d>
+" trigger at line 11 rather than 10 to check whether the comment is inserted at
+" the starting position of the function, which is line 10.
+  :11\<CR>
+  \<C-d>
+
+Expect cpp (generated comment with @brief, @tparam tags):
+  /**
+   * struct test - [TODO:description]
+   *
+   * @tparam Test1 [TODO:description]
+   * @tparam Test2 [TODO:description]
+   */
+  template <typename Test1, typename Test2>
+  struct test {};
+
+  /**
+   * struct test2 - [TODO:description]
+   *
+   * @tparam Test1 [TODO:description]
+   * @tparam Test2 [TODO:description]
+   */
+  template <typename Test1, typename Test2>
+  struct test2 {};

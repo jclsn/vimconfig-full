@@ -1,0 +1,97 @@
+{
+  "adapters": {
+    "cpptools-remote": {
+      "command": [
+        "${gadgetDir}/vscode-cpptools/debugAdapters/bin/OpenDebugAD7"
+      ],
+      "name": "cppdbg",
+      "configuration": {
+        "type": "cppdbg" },
+      "launch": {
+        "remote": {
+          "host": "${host}",
+          "account": "${account}",
+          // or, alternatively "container": "${ContainerID}"
+
+          "runCommand": [
+            "gdbserver",
+            "--once",
+            "--no-startup-with-shell",
+            "--disable-randomization",
+            "0.0.0.0:${port}",
+            "%CMD%"
+          ]
+        },
+        "delay": "1000m" // optional
+      },
+      "attach": {
+        "remote": {
+          "host": "${host}",
+          "account": "${account}",
+          // or, alternatively "container": "${ContainerID}"
+
+          "pidCommand": [
+             // e.g. "/path/to/secret/script/GetPIDForService", "${ServiceName}"
+             // or...
+             "pgrep", "executable"
+          ],
+          "attachCommand": [
+            "gdbserver", "--once",
+            "--attach",
+            "0.0.0.0:${port}",
+            "%PID%"
+          ]
+          //
+          // If your application is started by a wrapper script, then you might
+          // need the following. GDB can't pause an application because it only
+          // sends the signal to the process group leader. Or something.
+          // Basically, if you find that everything just hangs and the
+          // application never attaches, try using the following to manually
+          // force the trap signal.
+          //
+          // "initCompleteCommand": [
+          //   "kill",
+          //   "-TRAP",
+          //   "%PID%"
+          // ]
+        },
+        "delay": "1000m" // optional
+      }
+    }
+  },
+  "configurations": {
+    "remote launch": {
+      "adapter": "cpptools-remote",
+      "remote-cmdLine": [ "/path/to/the/remote/executable", "args..." ],
+      "remote-request": "launch",
+      "configuration": {
+        "request": "launch",
+
+        "program": "/path/to/the/local/executable",
+        "cwd": "${workspaceRoot}",
+        "MIMode": "gdb",
+        "miDebuggerServerAddress": "${host}:${port}"
+	// Use gdb-multiarch or a specific gdb version for the target architecture
+	// "MIDebuggerPath": "/usr/bin/gdb-multiarch",
+	// Not needed in most cases
+        // "sourceFileMap#json": "{\"${RemoteRoot}\": \"${workspaceRoot}\"}"
+      }
+    },
+    "remote attach": {
+      "adapter": "cpptools-remote",
+      "remote-request": "attach",
+      "configuration": {
+        "request": "launch",
+
+        "program": "/path/to/the/local/executable",
+        "cwd": "${workspaceRoot}",
+        "MIMode": "gdb",
+        "miDebuggerServerAddress": "${host}:${port}"
+	// Use gdb-multiarch or a specific gdb version for the target architecture
+	// "MIDebuggerPath": "/usr/bin/gdb-multiarch",
+	// Not needed in most cases
+        // "sourceFileMap#json": "{\"${RemoteRoot}\": \"${workspaceRoot}\"}"
+      }
+    }
+  }
+}

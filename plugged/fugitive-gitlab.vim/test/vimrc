@@ -1,0 +1,12 @@
+filetype off
+set runtimepath+=./vader.vim/
+set runtimepath+=./vim-fugitive/
+set runtimepath+=./fugitive-gitlab.vim
+set runtimepath+=../vader.vim/
+set runtimepath+=../vim-fugitive/
+set runtimepath+=../fugitive-gitlab.vim
+filetype plugin indent on
+syntax enable
+set nomore
+set noswapfile
+set viminfo=

@@ -1,0 +1,26 @@
+{
+  "configurations": {
+    "Launch": {
+      "adapter": "<vscode-cpptools or CodeLLDB>",
+      "filetypes": [ "cpp", "c", "objc", "rust" ],
+      "configuration": {
+        "request": "launch",
+        "program": "<path to binary>",
+        "args": [],
+        "cwd": "${workspaceRoot}",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "<lldb or gdb>"
+      }
+    },
+    "Attach": {
+      "adapter": "<vscode-cpptools or CodeLLDB>",
+      "filetypes": [ "cpp", "c", "objc", "rust" ],
+      "configuration": {
+        "request": "attach",
+        "program": "<path to binary>",
+        "MIMode": "<lldb or gdb>"
+      }
+    }
+  }
+}

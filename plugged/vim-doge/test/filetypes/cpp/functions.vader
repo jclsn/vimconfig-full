@@ -1,0 +1,127 @@
+# ==============================================================================
+# Functions without parameters.
+# ==============================================================================
+Given cpp (function without parameters with return type):
+  int myFunc(/* inline comment */) {}
+
+Do (trigger doge):
+  \<C-d>
+
+Expect cpp (generated comment with nothing but @brief and @return tag):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @return [TODO:description]
+   */
+  int myFunc(/* inline comment */) {}
+
+# ==============================================================================
+# Functions with parameters.
+# ==============================================================================
+Given cpp (function with parameters without return type):
+  class TestClass {
+    public:
+      int myFunc();
+  };
+
+  int TestClass::myFunc(const std::string& text /* inline comment */, const Node* node, int &*testInputInt) {}
+
+Do (trigger doge):
+  :8\<CR>
+  \<C-d>
+
+Expect cpp (generated comment with @brief, @param and @return tags):
+  class TestClass {
+    public:
+      int myFunc();
+  };
+
+  /**
+   * @brief [TODO:summary]
+   *
+   * @param[[TODO:direction]] text [TODO:description]
+   * @param[[TODO:direction]] node [TODO:description]
+   * @param[[TODO:direction]] testInputInt [TODO:description]
+   * @return [TODO:description]
+   */
+  int TestClass::myFunc(const std::string& text /* inline comment */, const Node* node, int &*testInputInt) {}
+
+
+
+# ==============================================================================
+# Functions with parameters with default values.
+# ==============================================================================
+Given cpp (function with parameters with default values with void return type):
+  void f(A* p = this) {}
+
+Do (trigger doge):
+  \<C-d>
+
+Expect cpp (generated comment with @brief and @param tag):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @param[[TODO:direction]] p [TODO:description]
+   */
+  void f(A* p = this) {}
+
+# ==============================================================================
+# Functions that returns a pointer type.
+# ==============================================================================
+Given cpp (function that returns a pointer type):
+  int* fun1(int a,int b,int c){
+      return nullptr;
+  }
+
+Do (trigger doge):
+  \<C-d>
+
+Expect cpp (generated comment with @brief and @param tag):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @param[[TODO:direction]] a [TODO:description]
+   * @param[[TODO:direction]] b [TODO:description]
+   * @param[[TODO:direction]] c [TODO:description]
+   * @return [TODO:description]
+   */
+  int* fun1(int a,int b,int c){
+      return nullptr;
+  }
+
+# ==============================================================================
+# Functions with a default value
+# ==============================================================================
+Given cpp (function with a default value):
+  int y = 5;
+  void foo( int x = y );
+
+Do (trigger doge):
+  :2\<CR>
+  \<C-d>
+
+Expect cpp (generated comment with @brief and @param tag):
+  int y = 5;
+  /**
+   * @brief [TODO:summary]
+   *
+   * @param[[TODO:direction]] x [TODO:description]
+   */
+  void foo( int x = y );
+
+# ==============================================================================
+# Functions with unnamed parameters
+# ==============================================================================
+Given cpp (Functions with unnamed parameter):
+  Game(const Game &)=default;
+
+Do (trigger doge):
+  \<C-d>
+
+Expect cpp (generated comment with @brief and @param tag):
+  /**
+   * @brief [TODO:summary]
+   *
+   * @param[[TODO:direction]] [TODO:name] [TODO:description]
+   */
+  Game(const Game &)=default;

@@ -1,0 +1,71 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=NAME
+pkgver=VERSION
+pkgrel=1
+epoch=
+pkgdesc=""
+arch=()
+url=""
+license=('GPL')
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("${pkgname}-${pkgver}.tar.gz"
+        "${pkgname}-${pkgver}.patch")
+noextract=()
+sha256sums=()
+validpgpkeys=()
+
+pkgver() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	patch -p1 -i "${srcdir}/${pkgname}-${pkgver}.patch"
+
+	[ ! -d build ] || rm -rf build
+	mkdir build && cd build
+	cmake \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DBUILD_SHARED_LIBS=ON \
+		..
+}
+
+build() {
+	cd "${srcdir}/${pkgname}-${pkgver}/build"
+	make
+}
+
+check() {
+	cd "${srcdir}/${pkgname}-${pkgver}/build"
+	make -k check
+}
+
+package() {
+	cd "${srcdir}/${pkgname}-${pkgver}/build"
+
+	make DESTDIR="${pkgdir}/" install
+
+	install -D -m644 \
+		"${srcdir}/${pkgname}-${pkgver}/LICENSE" \
+		"${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+}

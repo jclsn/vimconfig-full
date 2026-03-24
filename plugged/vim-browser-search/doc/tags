@@ -1,0 +1,12 @@
+BrowserSearch	search.txt	/*BrowserSearch*
+browser-search-commands	search.txt	/*browser-search-commands*
+browser-search-contents	search.txt	/*browser-search-contents*
+browser-search-installation	search.txt	/*browser-search-installation*
+browser-search-introduction	search.txt	/*browser-search-introduction*
+browser-search-keymap	search.txt	/*browser-search-keymap*
+browser-search-repository	search.txt	/*browser-search-repository*
+browser-search-usecases	search.txt	/*browser-search-usecases*
+browser-search-variables	search.txt	/*browser-search-variables*
+g:browser_search_default_engine	search.txt	/*g:browser_search_default_engine*
+g:browser_search_engines	search.txt	/*g:browser_search_engines*
+vim-browser-search.txt	search.txt	/*vim-browser-search.txt*

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+  "adapters": {
+    "gdb-with-build": {
+      "extends": "vscode-cpptools",
+      "variables": {
+        "buildme": {
+          "shell": "jai ${workspaceRoot}/build.jai"
+        }
+      }
+    },
+    "codelldb-with-build": {
+      "extends": "CodeLLDB",
+      "variables": {
+        "buildme": {
+          "shell": "jai ${workspaceRoot}/build.jai"
+        }
+      }
+    }
+  },
+  "configurations": {
+    "Run - gdb": {
+      "adapter": "gdb-with-build",
+      "filetypes": [ "jai" ],
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${binaryName}",
+        "args": [ "*${args}" ],
+        "stopAtEntry": true,
+        "stopOnEntry": true
+      }
+    },
+    "Run - lldb": {
+      "extends": "Run - gdb",
+      "filetypes": [ "jai" ],
+      "adapter": "codelldb-with-build"
+    },
+    "Attach - gdb": {
+      "adapter": "vscode-cpptools",
+      "filetypes": [ "jai" ],
+      "configuration": {
+        "request": "attach",
+        "program": "${workspaceRoot}/${binaryName}",
+        "processId": "${PID}"
+      }
+    },
+    "Attach - lldb": {
+      "extends": "Attach - gdb",
+      "filetypes": [ "jai" ],
+      "adapter": "CodeLLDB",
+      "configuration": {
+        "pid": "${PID}"
+      }
+    }
+  }
+}
+

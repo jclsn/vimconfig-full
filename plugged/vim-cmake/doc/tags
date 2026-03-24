@@ -1,0 +1,5 @@
+:CMake	cmake.txt	/*:CMake*
+:CTest	cmake.txt	/*:CTest*
+cmake	cmake.txt	/*cmake*
+cmake-commands	cmake.txt	/*cmake-commands*
+cmake.txt	cmake.txt	/*cmake.txt*

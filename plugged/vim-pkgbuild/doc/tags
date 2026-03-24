@@ -1,0 +1,9 @@
+g:vim_pkgbuild_silent	vim-pkgbuild.txt	/*g:vim_pkgbuild_silent*
+vim-pkgbuild	vim-pkgbuild.txt	/*vim-pkgbuild*
+vim-pkgbuild-commands	vim-pkgbuild.txt	/*vim-pkgbuild-commands*
+vim-pkgbuild-contents	vim-pkgbuild.txt	/*vim-pkgbuild-contents*
+vim-pkgbuild-introduction	vim-pkgbuild.txt	/*vim-pkgbuild-introduction*
+vim-pkgbuild-license	vim-pkgbuild.txt	/*vim-pkgbuild-license*
+vim-pkgbuild-options	vim-pkgbuild.txt	/*vim-pkgbuild-options*
+vim-pkgbuild-updpkgsums	vim-pkgbuild.txt	/*vim-pkgbuild-updpkgsums*
+vim-pkgbuild.txt	vim-pkgbuild.txt	/*vim-pkgbuild.txt*

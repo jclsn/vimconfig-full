@@ -1,0 +1,15 @@
+/* Save this file in ~/.vim/<plugindir>/vimspector/configurations/bash/bash.json 
+ * to debug any bash file without having to create an additional config. Considering
+ * that on most system /bin/sh is just a symlink to bash, one may also add it to 
+ * ~/.vim/<plugindir>/vimspector/configurations/sh/bash.json 
+ */
+{
+  "configurations": {
+    "BASH - Run Current Script": {
+      "adapter": "vscode-bash",
+      "configuration": {
+        "program": "${file}"
+      }
+    }
+  }
+}

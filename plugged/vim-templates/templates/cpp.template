@@ -1,0 +1,10 @@
+#include "{{FILE}}.h"
+
+{{CLASS}}::{{CLASS}}()
+{
+    {{CURSOR}}
+}
+
+{{CLASS}}::~{{CLASS}}()
+{
+}
