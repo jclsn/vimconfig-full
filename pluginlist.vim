@@ -10,7 +10,6 @@ Plug 'yegappan/lsp', { 'do': 'git fetch --unshallow' }
 
 
 " ################## Code Formatting ####################
-Plug 'ambv/black', { 'for': [ 'python' ] }
 Plug 'bigfish/vim-stylelint'
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'vim-autoformat/vim-autoformat'
@@ -78,7 +77,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' 
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/vim-peekaboo'
-Plug 'lervag/vimtex'
 Plug 'markonm/traces.vim'
 Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -99,10 +97,6 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 
 " ------------- C++ --------------
 Plug 'ReverentEngineer/vim-cmake', { 'for': [ 'c', 'cpp' ] }
-
-" ------------- Go --------------
-Plug 'fatih/vim-go'
-Plug 'charlespascoe/vim-go-syntax'
 
 " ------------ Julia ---------------
 Plug 'JuliaEditorSupport/julia-vim'
